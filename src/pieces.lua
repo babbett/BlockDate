@@ -1,4 +1,4 @@
-pieceStructures = {
+PieceStructures = {
     {
         {
             {' ', ' ', ' ', ' '},

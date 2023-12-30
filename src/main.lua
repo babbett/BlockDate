@@ -125,7 +125,7 @@ local function canPieceMove(testX, testY, testRotation)
 			local testBlockX = testX + x
 			local testBlockY = testY + y
 			if not inert[testY+1] then return false end
-			if pieceStructures[piece.type][testRotation+1][y][x] ~= ' ' and (
+			if PieceStructures[piece.type][testRotation+1][y][x] ~= ' ' and (
 				testBlockX < 1 or testBlockX > gridXCount
 				or testBlockY < 1 or testBlockY > gridYCount
 				or inert[testBlockY][testBlockX] ~= " "
@@ -139,7 +139,7 @@ end
 
 local function newSequence()
 	sequence = {}
-	for i = 1, #pieceStructures do
+	for i = 1, #PieceStructures do
 		table.insert(sequence, random(#sequence + 1), i)
 	end
 end
@@ -176,7 +176,7 @@ end
 
 local function rotate(rotation)
 	local testRotation = piece.rotation + rotation
-	testRotation = testRotation % #pieceStructures[piece.type]
+	testRotation = testRotation % #PieceStructures[piece.type]
 
 	-- TODO(thacuber2a03): temporary solve until I can figure out how to compact it
 	-- TODO(thacuber2a03): still don't know how to compact it, might have to refactor piece.rotation
@@ -565,7 +565,7 @@ end
 local function drawHeldPiece() -- draw held piece
 	if heldPiece and theme ~= "retro" then
 		loopThroughPieceBlocks(function(_, x, y)
-			local block = pieceStructures[heldPiece][1][y][x]
+			local block = PieceStructures[heldPiece][1][y][x]
 			if block ~= ' ' then
 				local acp = heldPiece ~= 1 and heldPiece ~= 2
 				drawBlock('*', x+(UITimer.value-(acp and 3.5 or 3.9)), y+(acp and 4 or (heldPiece == 1 and 3.5 or 3)), uiBlockSize)
@@ -577,7 +577,7 @@ end
 local function drawNextPiece() -- draw next piece
 	loopThroughPieceBlocks(function(_, x, y)
 		local nextPiece = sequence[#sequence]
-		local block = pieceStructures[nextPiece][1][y][x]
+		local block = PieceStructures[nextPiece][1][y][x]
 		if block ~= ' ' then
 			local acp = nextPiece ~= 1 and nextPiece ~= 2
 
@@ -712,7 +712,7 @@ function drawGame()
 		opcolor()
 		loopThroughPieceBlocks(function(_, x, y)
 			if not lost then
-				local block = pieceStructures[piece.type][piece.rotation+1][y][x]
+				local block = PieceStructures[piece.type][piece.rotation+1][y][x]
 				if block ~= ' ' then
 					drawBlock(block, x + piece.x + offsetX, y + piece.y + offsetY,blockSize)
 					if ghost then

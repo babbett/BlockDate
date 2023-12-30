@@ -21,7 +21,6 @@ function loadMusic(name)
 end
 
 IMAGESDIR = "assets/images/"
-
 function loadImage(name)
 	return assert(GFX.image.new(IMAGESDIR..name))
 end
@@ -33,7 +32,7 @@ end
 function loopThroughPieceBlocks(func)
 	for y=1, pieceYCount do
 		for x=1, pieceXCount do
-			func(pieceStructures[piece.type][piece.rotation+1][y][x], x, y)
+			func(PieceStructures[piece.type][piece.rotation+1][y][x], x, y)
 		end
 	end
 end

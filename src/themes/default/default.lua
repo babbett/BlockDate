@@ -61,7 +61,7 @@ local scene = {
 
 		if heldPiece then
 			loopThroughPieceBlocks(function(_, x, y)
-				local block = pieceStructures[heldPiece][1][y][x]
+				local block = PieceStructures[heldPiece][1][y][x]
 				if block ~= ' ' then
 					local acp = heldPiece ~= 1 and heldPiece ~= 2
 					drawBlock('*', x+(UITimer.value-(acp and 3.5 or 3.9)), y+(acp and 4 or (heldPiece == 1 and 3.5 or 3)), uiBlockSize)
