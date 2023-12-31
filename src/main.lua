@@ -32,6 +32,7 @@ import "pieces"
 import "menu"
 import "images"
 import "sounds"
+import "bectils"
 
 import "effects/endline"
 import "effects/clearline"
